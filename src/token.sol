@@ -135,4 +135,8 @@ contract DSToken is DSMath, DSAuth {
     function setName(string memory name_) public auth {
         name = name_;
     }
+
+    function setSymbol(string memory symbol_) public auth {
+        symbol = symbol_;
+    }
 }

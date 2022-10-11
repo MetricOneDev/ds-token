@@ -65,6 +65,10 @@ contract TokenUser {
         token.setName(name);
     }
 
+    function doSetSymbol(string memory symbol) public {
+        token.setSymbol(symbol);
+    }
+
     function doApprove(address guy)
         public
         returns (bool)
@@ -304,8 +308,18 @@ contract DSTokenTest is DSTest {
         assertEq(token.name(), "Test");
     }
 
+    function testSetSymbol() public logs_gas {
+        assertEq(token.symbol(), "TST");
+        token.setSymbol("TST1");
+        assertEq(token.symbol(), "TST1");
+    }
+
     function testFailSetName() public logs_gas {
         TokenUser(user1).doSetName("Test");
+    }
+
+    function testFailSetSymbol() public logs_gas {
+        TokenUser(user1).doSetSymbol("TST2");
     }
 
     function testFailUntrustedTransferFrom() public {
